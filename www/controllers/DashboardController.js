@@ -26,7 +26,7 @@ angular.module('DashboardController', [])
     }
 
     WifiWizard.setWifiEnabled(true, function(){
-      document.getElementById('info').innerHTML = data;
+      document.getElementById('info').innerHTML = "Connected To Wifi...";
     }, function(error){
         cosole.log("Error : "+error)
     });

@@ -1,2 +1,0 @@
-# mtracker
-Mobile Tracking App 

@@ -1,6 +1,7 @@
 angular.module('DashboardController', [])
 .controller('DashboardController', function($scope, $cordovaSms) {
   $scope.title = "My Dashboard";
+
   document.addEventListener("deviceready", function () {
     
     $scope.sendSMS = function(){      
@@ -24,19 +25,8 @@ angular.module('DashboardController', [])
           });
     }
 
-    // Get Wifi Info.
-    function success(data){
-      alert(data);
-      document.getElementById('info').html(data)
-    }
-
-    function fail(data){
-      alert(data);
-      document.getElementById('info').html(data)
-    }
-
     WifiWizard.setWifiEnabled(true, function(){
-      document.getElementById('info').html(data)
+      document.getElementById('info').innerHTML = data;
     }, function(error){
         cosole.log("Error : "+error)
     });

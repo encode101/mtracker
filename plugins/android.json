@@ -31,6 +31,14 @@
                         {
                             "xml": "<feature name=\"SMS\"><param name=\"android-package\" value=\"com.rjfun.cordova.sms.SMSPlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BackgroundMode\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.background.BackgroundMode\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"KeepRunning\" value=\"true\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -80,6 +88,12 @@
                             "xml": "<uses-permission android:name=\"android.permission.SEND_SMS\" />",
                             "count": 1
                         }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<service android:name=\"de.appplant.cordova.plugin.background.ForegroundService\" />",
+                            "count": 1
+                        }
                     ]
                 }
             }
@@ -105,6 +119,9 @@
             "PACKAGE_NAME": "com.ionicframework.tracker889550"
         },
         "com.rjfun.cordova.sms": {
+            "PACKAGE_NAME": "com.ionicframework.tracker889550"
+        },
+        "de.appplant.cordova.plugin.background-mode": {
             "PACKAGE_NAME": "com.ionicframework.tracker889550"
         }
     },

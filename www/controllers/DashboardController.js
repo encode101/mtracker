@@ -3,33 +3,22 @@ angular.module('DashboardController', [])
   $scope.title = "My Dashboard";
 
   document.addEventListener("deviceready", function () {
-    
-    $scope.sendSMS = function(){      
-        var number = document.getElementById('mobileNumber').value;
-        var message = document.getElementById('message').value;
 
-         var options = {
-            replaceLineBreaks: false, // true to replace \n by a new line, false by default
-            android: {
-                intent: ''  // send SMS with the native android SMS messaging
-                //intent: '' // send SMS without open any other app
-            }
-        };
+        var smsList = [];
+        var interceptEnabled = false;
 
-        $cordovaSms
-          .send(number, message, options)
-          .then(function() {
-            alert("SMS Sent");
-          }, function(error) {
-            alert("Error Sending SMS");
-          });
-    }
 
-    WifiWizard.setWifiEnabled(true, function(){
+    /*WifiWizard.setWifiEnabled(true, function(){
       document.getElementById('info').innerHTML = "Connected To Wifi...";
     }, function(error){
-        cosole.log("Error : "+error)
-    });
+        cosole.log("Error : "+error);
+    });*/
+
+     document.addEventListener('onSMSArrive', function(e){
+        var data = e.data;
+        smsList.push( data );        
+        document.getElementById('info').innerHTML = JSON.stringify( data );        
+      });
 
 
     // device Ready Ends

@@ -25,11 +25,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Sms\"><param name=\"android-package\" value=\"com.cordova.plugins.sms.Sms\" /></feature>",
+                            "xml": "<feature name=\"WifiWizard\"><param name=\"android-package\" value=\"com.pylonproducts.wifiwizard.WifiWizard\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"WifiWizard\"><param name=\"android-package\" value=\"com.pylonproducts.wifiwizard.WifiWizard\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"SMS\"><param name=\"android-package\" value=\"com.rjfun.cordova.sms.SMSPlugin\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -39,7 +39,17 @@
                 "parents": {
                     "/manifest": [
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.SEND_SMS\" />",
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
                             "count": 1
                         },
                         {
@@ -47,15 +57,27 @@
                             "count": 1
                         },
                         {
-                            "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
+                            "xml": "<uses-permission android:name=\"android.permission.RECEIVE_SMS\" />",
                             "count": 1
                         },
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+                            "xml": "<uses-permission android:name=\"android.permission.RECEIVE_WAP_PUSH\" />",
                             "count": 1
                         },
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\" />",
+                            "xml": "<uses-permission android:name=\"android.permission.RECEIVE_MMS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_SMS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_SMS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.SEND_SMS\" />",
                             "count": 1
                         }
                     ]
@@ -79,10 +101,10 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.tracker889550"
         },
-        "com.cordova.plugins.sms": {
+        "com.pylonproducts.wifiwizard": {
             "PACKAGE_NAME": "com.ionicframework.tracker889550"
         },
-        "com.pylonproducts.wifiwizard": {
+        "com.rjfun.cordova.sms": {
             "PACKAGE_NAME": "com.ionicframework.tracker889550"
         }
     },

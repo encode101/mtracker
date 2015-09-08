@@ -87,6 +87,14 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.SEND_SMS\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
                         }
                     ],
                     "/manifest/application": [
@@ -122,6 +130,9 @@
             "PACKAGE_NAME": "com.ionicframework.tracker889550"
         },
         "de.appplant.cordova.plugin.background-mode": {
+            "PACKAGE_NAME": "com.ionicframework.tracker889550"
+        },
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.tracker889550"
         }
     },

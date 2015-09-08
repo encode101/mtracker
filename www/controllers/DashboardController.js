@@ -1,19 +1,17 @@
 angular.module('DashboardController', [])
-.controller('DashboardController', function($scope, $cordovaSms) {
+.controller('DashboardController', function($scope, $cordovaSms, SmsService, SystemService) {
   $scope.title = "My Dashboard";
 
-  document.addEventListener("deviceready", function () {
-
+  document.addEventListener("deviceready", function () {    
+    
     var smsList = [];
     var interceptEnabled = false;
 
     // Turning Wifi ON
 
-    WifiWizard.setWifiEnabled(true, function(){
-      document.getElementById('info').innerHTML = "Connected To Wifi...";
-    }, function(error){
-        cosole.log("Error : "+error);
-    });
+    var wifiEnabled = SystemService.isWifiEnabled();
+    zdocument.getElementById('info').innerHTML = JSON.stringify(wifiEnabled);
+    
 
     // Listening For SMSArrive
 
@@ -21,11 +19,24 @@ angular.module('DashboardController', [])
      SMS.startWatch();
      document.addEventListener('onSMSArrive', function(e){
         var data = e.data;
-        smsList.push( data );        
-        document.getElementById('info').innerHTML = JSON.stringify(data.body);
+        smsList.push( data ); 
+        senderPhoneNumber =  data.address;     
+        document.getElementById('info').innerHTML = JSON.stringify(data);
         var msg = data.body;
-        if(msg.match(/XLOCATEX/gi)){
-          document.getElementById('info').innerHTML = "Yes : "+JSON.stringify(data.body);
+
+        // If match found
+
+        if(msg.match(/XLOCATE/gi)){
+         var onSuccess = function(position){
+              var number = data.address;
+              var text  = "http://www.rahulmishra.com/t/?query=https://maps.googleapis.com/maps/api/geocode/json?latlng="
+                +position.coords.latitude+","
+                +position.coords.longitude;
+              var res = SmsService.sendSms(number, text);
+              document.getElementById('info').innerHTML = res;
+          }
+          navigator.geolocation.getCurrentPosition(onSuccess);         
+
         } else{
           document.getElementById('info').innerHTML = "No : Irrelevant Message";
         }

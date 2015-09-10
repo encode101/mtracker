@@ -10,12 +10,18 @@
       <textarea name="message" id="message"  placeholder="Message"></textarea>
     </label>
     <label  class="item item-input">
-    <input type="submit" name="submit" value="Send SMS" class="button button-full button-positive" />
+    
     </label>
    </form> -->
+
+   <!-- <input type="button" name="submit" value="Get Tickets" class="button button-full button-positive" ng-click="getTickets()" /> -->
    
    <div class="info" id="info">
-
+    <ul>
+      <li>Wifi Status : <span ng-show="{{wifiEnabled}}">Disabled...</span>
+                        <span ng-show="{{!wifiEnabled}}">Enabled...</span>
+      </li>  
+    </ul>
    </div>
   </ion-content>
 </ion-view>

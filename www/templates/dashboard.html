@@ -16,11 +16,16 @@
 
    <!-- <input type="button" name="submit" value="Get Tickets" class="button button-full button-positive" ng-click="getTickets()" /> -->
    
-   <div class="info" id="info">
-    <ul>
-      <li>Wifi Status : <span ng-show="{{wifiEnabled}}">Disabled...</span>
+   <div class="info" id="info"></div>
+
+    <button class="button button-medium button-assertive ion-alert" ng-click="sendSMS()"> SOS </button> <br/><br/>
+    <ul class="list">
+      <li class="item item-icon-left"><i class="icon ion-wifi"></i> <span ng-show="{{wifiEnabled}}">Disabled...</span>
                         <span ng-show="{{!wifiEnabled}}">Enabled...</span>
-      </li>  
+      </li>
+      <li class="item item-icon-left"><i class="icon ion-location"></i> Unknown</li>
+      <li class="item item-icon-left"><i class="icon ion-battery-charging"></i> Unknown</li>
+      <li class="item item-icon-left"><i class="icon ion-connection-bars"></i> Unknown</li>
     </ul>
    </div>
   </ion-content>

@@ -2,23 +2,31 @@ angular.module('DashboardController', [])
 .controller('DashboardController', function($scope, $cordovaSms, SmsService, SystemService) {
   $scope.title = "My Dashboard";
 
+
   document.addEventListener("deviceready", function () { 
 
-  
-    
-    var smsList = [];
-    var interceptEnabled = false;
+  SMS.startWatch();    
+  var smsList = [];
+  var interceptEnabled = false;
 
-    // Turning Wifi ON
+  // Turning Wifi ON
+
+  SystemService.isWifiEnabled().then(function(data){
+    $scope.wifiEnabled = data.wifiEnabled;
+  })
+
+  // Sample SMS
   
-    SystemService.isWifiEnabled().then(function(data){
-      $scope.wifiEnabled = data.wifiEnabled;
-    })   
+
+  $scope.sendSMS = function(){
+    var recepient = "9545600524";
+    var msg = "Sample Message Sent";
+    SmsService.sendSms(recepient, msg); 
+  }
 
     
-    // Listening For SMSArrive
- 
-     SMS.startWatch();
+    // Listening For SMSArrive  
+     
      document.addEventListener('onSMSArrive', function(e){
         var data = e.data;
         smsList.push( data ); 
@@ -26,19 +34,8 @@ angular.module('DashboardController', [])
 
         // If match found
 
-        if(msg.match(/XLOCATE/gi)){
-         var onSuccess = function(position){
-              var number = data.address;
-              var text  = "http://www.rahulmishra.com/t/?query=https://maps.googleapis.com/maps/api/geocode/json?latlng="
-                +position.coords.latitude+","
-                +position.coords.longitude;
-              var res = SmsService.sendSms(number, text);
-              document.getElementById('info').innerHTML = res;
-          }
-          navigator.geolocation.getCurrentPosition(onSuccess);         
-
-        } else{
-          document.getElementById('info').innerHTML = "No : Irrelevant Message";
+        if(msg.match(/xloc/gi)){
+          SystemService.sendLocation(data.address);
         }
       });
 

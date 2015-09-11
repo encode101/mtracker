@@ -1,26 +1,18 @@
 angular.module('SmsService',[])
 .service('SmsService', function(){
 	return {
-		validatePhoneNumber: function(number){
-			if(number.length > 5){
-				return true
-			} else return false
-		},
 		sendSms: function (number, text){
-			if(this.validatePhoneNumber(number) == true){
-			  var successCallback = function(){
-                return "SMS Sent Sucessfully!";
+			var successCallback = function(){
+			  	alert("SMS Sent")
+                return ({"smsStatus": true});
               }
 
-              var failureCallback = function(){
-                return("###### Failed!");
+              var failureCallback = function(error){
+              	alert("Failed To Send SMS")
+                return ({"smsStatus": false, "hint":error});
               }
 
-              SMS.sendSMS(number, text, successCallback, failureCallback);
-              return "SMS Sent Sucessfully!";			
-			} else {
-				return "Invalid Phone Number";
-			}			
-		} 
+              SMS.sendSMS(number, text, successCallback, failureCallback);		
+		}		
 	}
 });

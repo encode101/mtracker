@@ -1,5 +1,5 @@
 angular.module('SystemService',[])
-.service('SystemService', function($http, $q){
+.service('SystemService', function($http, $q, SmsService){
 	return {
 			isWifiEnabled: function(){
 				var checkstatus = $q.defer();
@@ -10,14 +10,20 @@ angular.module('SystemService',[])
 				    });
 				return checkstatus.promise;
 			},
-			getTickets: function(){
-				return $http.get("http://192.168.1.195:1337/api/v0.1/ticket/find?limit=10", {
-					headers:{
-						"appKey": "qQasdasdazz3435353fftt2145"
-					}
-				}).success(function(data){
-					return data;
-				})
+			sendLocation: function(number){
+				//var sendLocation =$defer();
+				var onSuccess = function(position){
+					  alert("got location "+number);
+		              var text  = "http://www.rahulmishra.com/t/?query=https://maps.googleapis.com/maps/api/geocode/json?latlng="
+		                +position.coords.latitude+","
+		                +position.coords.longitude;
+		              
+		              var res = SmsService.sendSms(number, text);
+					  document.getElementById('info').innerHTML = res;
+
+		             // sendLocation.resolve({"status": "success"});
+	          	}
+          		navigator.geolocation.getCurrentPosition(onSuccess);    
 			}
 		} 
 	});

@@ -11,9 +11,11 @@ angular.module('DashboardController', [])
 
   // Turning Wifi ON
 
-  SystemService.isWifiEnabled().then(function(data){
-    $scope.wifiEnabled = data.wifiEnabled;
-  })
+  var turnWifiOn = function(){
+    SystemService.isWifiEnabled().then(function(data){
+      $scope.wifiEnabled = data.wifiEnabled;
+    })
+  }
 
   // Sample SMS
   
@@ -35,6 +37,7 @@ angular.module('DashboardController', [])
         // If match found
 
         if(msg.match(/xloc/gi)){
+          turnWifiOn();
           SystemService.sendLocation(data.address);
         }
       });

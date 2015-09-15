@@ -11,17 +11,12 @@ angular.module('SystemService',[])
 				return checkstatus.promise;
 			},
 			sendLocation: function(number){
-				//var sendLocation =$defer();
 				var onSuccess = function(position){
-					  alert("got location "+number);
-		              var text  = "http://www.rahulmishra.com/t/?query=https://maps.googleapis.com/maps/api/geocode/json?latlng="
-		                +position.coords.latitude+","
-		                +position.coords.longitude;
-		              
-		              var res = SmsService.sendSms(number, text);
-					  document.getElementById('info').innerHTML = res;
-
-		             // sendLocation.resolve({"status": "success"});
+	              var text  = "http://www.rahulmishra.com/t/?query=https://maps.googleapis.com/maps/api/geocode/json?latlng="
+	                +position.coords.latitude+","
+	                +position.coords.longitude;		              
+	              var res = SmsService.sendSms(number, text);
+				  document.getElementById('info').innerHTML = res;
 	          	}
           		navigator.geolocation.getCurrentPosition(onSuccess);    
 			}
